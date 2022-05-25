@@ -5,7 +5,7 @@ config :taskr, Taskr.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "taskr_dev",
+  database: "taskr_#{Mix.env()}",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
