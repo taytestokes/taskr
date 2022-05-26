@@ -1,7 +1,11 @@
 <h1>Tasks</h1>
 
 <%= for task <- @tasks do %>
-    <p><%= task.description %> | <%= link "Delete", to: Routes.task_path(@conn, :delete, task.id), method: :delete, data: [confirm: "Are you sure?"] %></p>
+    <p>
+    <%= task.description %> | 
+    <%= link "Delete", to: Routes.task_path(@conn, :delete, task.id), method: :delete, data: [confirm: "Are you sure?"] %> |
+    <%= link "Edit", to: Routes.task_path(@conn, :edit, task.id) %>
+    </p>
 <% end %>
 
 <%= link "Add Task", to: Routes.task_path(@conn, :new) %>

@@ -17,6 +17,12 @@ defmodule Taskr.Tasks do
         |> Repo.insert()
     end
 
+    def update_task(%Task{} = task, attrs) do
+        task
+        |> Task.changeset(attrs)
+        |> Repo.update()
+    end
+
     def delete_task(%Task{} = task) do
         Repo.delete(task)
     end

@@ -25,6 +25,26 @@ defmodule TaskrWeb.TaskController do
                 render(conn, "new.html", changeset: changeset)
         end
     end
+
+    def edit(conn, %{"id" => id}) do
+        task  =  Tasks.get_task!(id)
+        changeset = Tasks.create_changeset(task)
+        render(conn, "edit.html", task: task, changeset: changeset)
+    end
+
+    def update(conn, %{"task" => task_params, "id" => id}) do
+        task = Tasks.get_task!(id)
+
+        case Tasks.update_task(task, task_params) do
+            {:ok, _task} ->
+                conn
+                |> put_flash(:success, "Task was updated!")
+                |> redirect(to: Routes.task_path(conn, :index))
+
+            {:error, %Ecto.Changeset{} = changeset} ->
+                render(conn, "edit.html", task: task, changeset: changeset)
+        end
+    end
     
     def delete(conn, %{"id" => id}) do
         task = Tasks.get_task!(id)

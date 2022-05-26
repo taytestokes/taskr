@@ -20,6 +20,8 @@ defmodule TaskrWeb.Router do
     get "/", TaskController, :index
     get "/new", TaskController, :new
     post "/", TaskController, :create
+    get "/:id/edit", TaskController, :edit
+    put "/:id", TaskController, :update
     delete "/:id", TaskController, :delete
   end
 

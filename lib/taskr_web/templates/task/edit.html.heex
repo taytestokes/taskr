@@ -1,0 +1,17 @@
+<h1>Update Task</h1>
+
+<%= form_for @changeset, Routes.task_path(@conn, :update, @task.id), fn f -> %>
+    <%= if @changeset.action do %>
+        <div>
+            <p>Something went wrong!</p>
+        </div>
+    <% end %>
+
+    <%= label f, :description %>
+    <%= text_input f, :description %>
+
+    <div>
+        <%= submit "Update Task"%>
+        <%= link  "Cancel", to: Routes.task_path(@conn, :index) %>
+    </div>
+<% end %>
