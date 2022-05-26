@@ -17,7 +17,9 @@ defmodule TaskrWeb.Router do
   scope "/", TaskrWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", TaskController, :index
+    get "/new", TaskController, :new
+    post "/", TaskController, :create
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,7 @@
+<h1>Tasks</h1>
+
+<%= for task <- @tasks do %>
+    <p><%= task.description %></p>
+<% end %>
+
+<%= link "Add Task", to: Routes.task_path(@conn, :new) %>
