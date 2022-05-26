@@ -16,6 +16,10 @@ defmodule TaskrWeb.Router do
 
   scope "/", TaskrWeb do
     pipe_through :browser
+  end
+
+  scope "/tasks", TaskrWeb do
+    pipe_through :browser
 
     get "/", TaskController, :index
     get "/new", TaskController, :new
