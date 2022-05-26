@@ -1,0 +1,12 @@
+<h1>Sign In!</h1>
+
+<%= form_for @conn, Routes.auth_path(@conn, :create), fn f -> %>
+    
+    <%= label f, :email %>
+    <%= text_input f, :email %>
+
+    <%= label f, :password %>
+    <%= password_input f, :password %>
+
+    <%= submit "Sign In" %>
+<% end %>

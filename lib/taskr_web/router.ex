@@ -20,6 +20,14 @@ defmodule TaskrWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/auth", TaskrWeb do
+    pipe_through :browser
+
+    get "/login", AuthController, :new
+    post "/login", AuthController, :create
+    
+  end
+
   scope "/tasks", TaskrWeb do
     pipe_through :browser
 
