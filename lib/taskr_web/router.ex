@@ -20,6 +20,7 @@ defmodule TaskrWeb.Router do
     get "/", TaskController, :index
     get "/new", TaskController, :new
     post "/", TaskController, :create
+    delete "/:id", TaskController, :delete
   end
 
   # Other scopes may use custom stacks.

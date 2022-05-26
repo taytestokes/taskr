@@ -3,6 +3,10 @@ defmodule Taskr.Tasks do
     alias Taskr.Repo
     alias Taskr.Tasks.Task
 
+    def get_task!(id) do
+        Repo.get!(Task, id)
+    end
+
     def get_tasks() do
         Repo.all(Task)
     end
@@ -11,6 +15,10 @@ defmodule Taskr.Tasks do
         %Task{}
         |> Task.changeset(attrs)
         |> Repo.insert()
+    end
+
+    def delete_task(%Task{} = task) do
+        Repo.delete(task)
     end
 
     def create_changeset(%Task{} = task) do
