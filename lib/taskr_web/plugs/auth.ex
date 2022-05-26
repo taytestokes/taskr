@@ -7,6 +7,8 @@ defmodule TaskrWeb.Plugs.Auth do
     alias TaskrWeb.Router.Helpers, as: Routes
     alias Taskr.Users
 
+    # Init and Call are callbacks used at the module level for
+    # implementing the plug behavior
     def init(opts), do: opts
 
     def call(conn, _opts) do
@@ -18,6 +20,20 @@ defmodule TaskrWeb.Plugs.Auth do
             
             true ->
                 assign(conn, :current_user, nil)
+        end
+    end
+
+    # Function level plugs
+    def is_authenticated(conn, _opts) do
+        cond do
+            conn.assigns.current_user ->
+                conn
+
+            true ->
+                conn
+                |> put_flash(:error, "You must login first!")
+                |> redirect(to: Routes.auth_path(conn, :new))
+                |> halt()
         end
     end
 end

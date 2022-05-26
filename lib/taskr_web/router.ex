@@ -30,11 +30,12 @@ defmodule TaskrWeb.Router do
 
     get "/login", AuthController, :new
     post "/login", AuthController, :create
-
+    delete "/logout", AuthController, :delete
   end
 
   scope "/tasks", TaskrWeb do
-    pipe_through :browser
+    # is_authenticated is a custom function from the auth plug
+    pipe_through [:browser, :is_authenticated]
 
     get "/", TaskController, :index
     get "/new", TaskController, :new

@@ -14,7 +14,15 @@ defmodule TaskrWeb.AuthController do
         |> handle_login_response()
     end
 
+    def delete(conn, _params), do: logout_user(conn)
+
     # Helpers
+    defp logout_user(conn) do
+        conn
+        |> configure_session(drop: true)
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
+
     defp login_user(conn, user) do
         conn
         |> assign(:current_user, user)

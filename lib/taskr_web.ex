@@ -74,6 +74,8 @@ defmodule TaskrWeb do
       import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router
+      # Custom auth plug to make functions available in router
+      import TaskrWeb.Plugs.Auth, only: [is_authenticated: 2]
     end
   end
 
