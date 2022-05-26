@@ -1,5 +1,9 @@
 <h1>Tasks</h1>
 
+<%= if @current_user do %>
+    <h2>Hello, <%= @current_user.email %></h2>
+<% end %>
+
 <%= for task <- @tasks do %>
     <p>
     <%= task.description %> | 

@@ -8,6 +8,11 @@ defmodule TaskrWeb.Router do
     plug :put_root_layout, {TaskrWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    # Custom auth plug that fetches the user
+    # based off of the user id stored in the session
+    # and stores the user into the session as :current_user
+    # or if the user id doesn't exist, :current_user will be nil
+    plug TaskrWeb.Plugs.Auth
   end
 
   pipeline :api do
@@ -25,7 +30,7 @@ defmodule TaskrWeb.Router do
 
     get "/login", AuthController, :new
     post "/login", AuthController, :create
-    
+
   end
 
   scope "/tasks", TaskrWeb do
