@@ -11,7 +11,7 @@
   </head>
   <body>
     <%= if @current_user do %>
-      <%= link "Sign Out", to: Routes.auth_path(@conn, :delete), method: :delete %>
+      <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
     <%= end %>
     <%= @inner_content %>
   </body>

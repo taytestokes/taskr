@@ -1,4 +1,4 @@
-defmodule TaskrWeb.AuthController do
+defmodule TaskrWeb.SessionController do
     use TaskrWeb, :controller
 
     alias Taskr.Users

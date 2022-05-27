@@ -32,7 +32,7 @@ defmodule TaskrWeb.Plugs.Auth do
             true ->
                 conn
                 |> put_flash(:error, "You must login first!")
-                |> redirect(to: Routes.auth_path(conn, :new))
+                |> redirect(to: Routes.session_path(conn, :new))
                 |> halt()
         end
     end

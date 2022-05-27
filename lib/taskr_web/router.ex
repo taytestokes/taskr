@@ -28,9 +28,9 @@ defmodule TaskrWeb.Router do
   scope "/auth", TaskrWeb do
     pipe_through :browser
 
-    get "/login", AuthController, :new
-    post "/login", AuthController, :create
-    delete "/logout", AuthController, :delete
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
 
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
