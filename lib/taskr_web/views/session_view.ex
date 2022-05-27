@@ -1,3 +1,3 @@
-defmodule TaskrWeb.AuthView do
+defmodule TaskrWeb.SessionView do
   use TaskrWeb, :view
 end

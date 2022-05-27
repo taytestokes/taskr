@@ -15,6 +15,12 @@ defmodule TaskrWeb.TaskController do
     end
 
     def create(conn, %{"task" => task_params}) do
+        # Get the current user id from the connection struct
+        # This is assigned in the plug middleware that's ran on every connection
+        user_id = conn.assigns.current_user.id
+        # Update the task with the user id
+        task_params = Map.put(task_params, "user_id", user_id)
+
         case Tasks.create_task(task_params) do
             {:ok, _task} ->
                 conn

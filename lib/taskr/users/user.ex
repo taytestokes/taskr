@@ -8,6 +8,8 @@ defmodule Taskr.Users.User do
         field(:password_hash, :string)
         field(:first_name, :string)
         field(:last_name, :string)
+
+        has_many(:tasks, Taskr.Tasks.Task)
         
         timestamps()
     end

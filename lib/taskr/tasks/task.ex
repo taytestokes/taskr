@@ -6,12 +6,14 @@ defmodule Taskr.Tasks.Task do
         field(:description, :string)
         field(:status, :string)
 
+        belongs_to(:user, Taskr.Users.User)
+
         timestamps()
     end
 
     def changeset(task, attrs) do
         task
-        |> cast(attrs, [:description])
-        |> validate_required([:description])
+        |> cast(attrs, [:description, :user_id])
+        |> validate_required([:description, :user_id])
   end
 end
