@@ -1,14 +1,19 @@
 defmodule Taskr.Tasks do
+    import Ecto.Query
 
     alias Taskr.Repo
     alias Taskr.Tasks.Task
 
-    def get_task!(id) do
+    def get_task_by_id!(id) do
         Repo.get!(Task, id)
     end
 
-    def get_tasks() do
-        Repo.all(Task)
+    def get_tasks_by_user_id(user_id) do
+        from(
+            t in Task,
+            where: t.user_id == ^user_id
+        )
+        |> Repo.all()
     end
 
     def create_task(attrs) do

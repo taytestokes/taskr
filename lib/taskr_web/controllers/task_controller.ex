@@ -5,7 +5,8 @@ defmodule TaskrWeb.TaskController do
     alias Taskr.Tasks.Task
 
     def index(conn, _params) do
-        tasks = Tasks.get_tasks()
+        user_id = conn.assigns.current_user.id
+        tasks = Tasks.get_tasks_by_user_id(user_id)
         render(conn, "index.html", tasks: tasks)
     end
 
@@ -15,10 +16,7 @@ defmodule TaskrWeb.TaskController do
     end
 
     def create(conn, %{"task" => task_params}) do
-        # Get the current user id from the connection struct
-        # This is assigned in the plug middleware that's ran on every connection
         user_id = conn.assigns.current_user.id
-        # Update the task with the user id
         task_params = Map.put(task_params, "user_id", user_id)
 
         case Tasks.create_task(task_params) do
@@ -33,13 +31,13 @@ defmodule TaskrWeb.TaskController do
     end
 
     def edit(conn, %{"id" => id}) do
-        task  =  Tasks.get_task!(id)
+        task  =  Tasks.get_task_by_id!(id)
         changeset = Tasks.create_changeset(task)
         render(conn, "edit.html", task: task, changeset: changeset)
     end
 
     def update(conn, %{"task" => task_params, "id" => id}) do
-        task = Tasks.get_task!(id)
+        task = Tasks.get_task_by_id!(id)
 
         case Tasks.update_task(task, task_params) do
             {:ok, _task} ->
@@ -53,7 +51,7 @@ defmodule TaskrWeb.TaskController do
     end
     
     def delete(conn, %{"id" => id}) do
-        task = Tasks.get_task!(id)
+        task = Tasks.get_task_by_id!(id)
 
         case Tasks.delete_task(task) do
             {:ok, _task} ->
