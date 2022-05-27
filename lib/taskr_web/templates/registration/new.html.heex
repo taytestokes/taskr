@@ -1,0 +1,12 @@
+<h1>Sign Up!</h1>
+
+<%= form_for @conn, Routes.registration_path(@conn, :create), fn f -> %>
+    
+    <%= label f, :email %>
+    <%= text_input f, :email %>
+
+    <%= label f, :password %>
+    <%= password_input f, :password %>
+
+    <%= submit "Sign Up" %>
+<% end %>

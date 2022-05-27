@@ -31,6 +31,9 @@ defmodule TaskrWeb.Router do
     get "/login", AuthController, :new
     post "/login", AuthController, :create
     delete "/logout", AuthController, :delete
+
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
   end
 
   scope "/tasks", TaskrWeb do

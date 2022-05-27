@@ -4,9 +4,8 @@ defmodule Taskr.Users.User do
 
     schema "users" do
         field(:email, :string)
-        field(:password_hash, :string)
-        # Password is a virtual attribute and won't be saved to the database
         field(:password, :string, virtual: true)
+        field(:password_hash, :string)
         field(:first_name, :string)
         field(:last_name, :string)
         
@@ -18,7 +17,6 @@ defmodule Taskr.Users.User do
         user
         |> cast(attrs, [:email, :password])
         |> validate_required([:email, :password])
-        # TODO: Improve email format validation
         |> validate_format(:email, ~r/@/)
         |> validate_length(:password, min: 6)
         # Downcases the email address
