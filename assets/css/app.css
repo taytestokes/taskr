@@ -1,51 +1,54 @@
-/* Reset CSS File */
-@import "./reset.css";
+/* Variables */
+:root {
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
 
-/* Alerts and form errors used by phx.new  keep here for now?*/
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-}
-.alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
-}
-.alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-.alert p {
-  margin-bottom: 0;
-}
-.alert:empty {
-  display: none;
-}
-.invalid-feedback {
-  color: #a94442;
-  display: block;
-  margin: -1rem 0 2rem;
+  --box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 /* Custom */
 *,
 *::before,
 *::after {
-  font-family: "Roboto", sans-serif !important;
+  box-sizing: border-box;
+  color: var(--zinc-900);
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
   margin: 0 auto;
   max-width: 80rem;
   padding: 0 2rem;
-  position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tasks */
+.add-task-btn {
+  border: #4f46e5 solid 1px;
+  border-radius: 4px;
+  color: #4f46e5;
+  padding: 8px;
+  width: 100%;
+  text-decoration: none;
+}
+
+.task-card {
+  border: var(--zinc-200) solid 1px;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow-sm);
+  margin: 8px 0;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
