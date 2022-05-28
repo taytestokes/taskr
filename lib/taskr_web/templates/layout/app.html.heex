@@ -1,5 +1,9 @@
 <main class="container">
   <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
   <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <%= if @current_user do %>
+      <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
+    <%= end %>
   <%= @inner_content %>
 </main>

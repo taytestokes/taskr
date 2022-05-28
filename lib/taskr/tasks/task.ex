@@ -4,7 +4,7 @@ defmodule Taskr.Tasks.Task do
 
     schema "tasks" do
         field(:description, :string)
-        field(:status, :string)
+        field(:status, :string, default: "inprogress")
 
         belongs_to(:user, Taskr.Users.User)
 
