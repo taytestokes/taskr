@@ -10,6 +10,11 @@ defmodule TaskrWeb.TaskController do
         render(conn, "index.html", tasks: tasks)
     end
 
+    def show(conn, %{"id" => id}) do
+        task = Tasks.get_task_by_id!(id)
+        render(conn, "show.html", task: task)
+    end
+
     def new(conn, _params) do
         changeset = Tasks.create_changeset(%Task{})
         render(conn, "new.html", changeset: changeset)

@@ -46,6 +46,7 @@ defmodule TaskrWeb.Router do
     pipe_through [:browser, :is_authenticated]
 
     get "/", TaskController, :index
+    get "/:id", TaskController, :show
     get "/new", TaskController, :new
     post "/", TaskController, :create
     get "/:id/edit", TaskController, :edit

@@ -1,0 +1,16 @@
+<div class="container">
+<h1><%= @task.description %></h1>
+
+
+<p><%= @task.status %></p>
+<p><%= @task.inserted_at %></p>
+
+
+<%= link "Delete", to: Routes.task_path(@conn, :delete, @task.id), method: :delete, data: [confirm: "Are you sure?"] %>
+
+<%= link "Edit", to: Routes.task_path(@conn, :edit, @task.id) %>
+</div>
+
+
+
+            

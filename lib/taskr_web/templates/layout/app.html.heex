@@ -1,4 +1,4 @@
-<main class="container">
+<main>
     <%= if @current_user do %>
       <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
     <%= end %>

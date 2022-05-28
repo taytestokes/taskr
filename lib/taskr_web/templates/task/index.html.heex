@@ -1,13 +1,10 @@
+<div class="container">
+
 <h1>Tasks</h1>
 
 <%= for task <- @tasks do %>
-    <div class="task-card">
-        <span><%= task.description %></span>
-        <div>
-            <%= link "Delete", to: Routes.task_path(@conn, :delete, task.id), method: :delete, data: [confirm: "Are you sure?"] %> |
-            <%= link "Edit", to: Routes.task_path(@conn, :edit, task.id) %>
-        </div>
-    </div>
+    <%= link task.description, to: Routes.task_path(@conn, :show, task.id), class: "task-card" %>
 <% end %>
 
 <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "add-task-btn" %>
+</div>
