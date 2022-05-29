@@ -49,7 +49,9 @@ defmodule Taskr.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:argon2_elixir, "~> 3.0"}
+      {:argon2_elixir, "~> 3.0"},
+      {:timex, "~> 3.7"},
+      {:ex_fontawesome, "~> 0.7.1"}
     ]
   end
 

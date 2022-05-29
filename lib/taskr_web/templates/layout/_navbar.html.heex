@@ -3,8 +3,8 @@
         <div class="account">
             <%= String.first(@current_user.email) %>
         </div>
-        
-        <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
+
+        <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>  
     </div>
       
 </div>

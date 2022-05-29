@@ -2,22 +2,39 @@
     <div class="tasks-container">
         <div class="header_container">
             <h1 class="header">Task Details</h1>
+            <%= link to: Routes.task_path(@conn, :edit, @task.id) do %>
+                <%= FontAwesome.icon("gear", type: "solid", class: "icon-md") %>
+            <% end %>
+        </div>
+
+        <div class="section_container">
             <div class={"status #{if @task.completed, do: "completed", else: "inprogress" }"}>
-                <span class={"status_text #{if @task.completed, do: "completed", else: "inprogress"}"}>Completed</span>
+                <span class={"status_text #{if @task.completed, do: "completed", else: "inprogress"}"}>
+                    <%= if @task.completed, do: "Completed", else: "In Progress" %>
+                </span>
             </div>
         </div>
+
+        <div class="section_container">
+            <div class="section_label">Description</div>
+            <span><%= @task.description %></span>
+        </div>
+
+        <div class="section_container">
+            <div class="section">
+                <div class="section_label">Created</div>
+                <span class="date"><%= format_date(@task.inserted_at) %></span>
+            </div>
+            <div class="section">
+                <div class="section_label">Last Updated</div>
+                <span class="date"><%= format_date(@task.updated_at) %></span>
+            </div>
+        </div>
+
+        <div class="action_container">
+            <%= link "Delete Task", to: Routes.task_path(@conn, :delete, @task.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn_danger"%>
+        </div>        
     </div>
-
-<%# 
-<p><%= @task.inserted_at %>
-
-        <%# <%= @task.description %>
-
-
-
-<%= link "Delete", to: Routes.task_path(@conn, :delete, @task.id), method: :delete, data: [confirm: "Are you sure?"] %>
-
-<%= link "Edit", to: Routes.task_path(@conn, :edit, @task.id) %>
 </div>
 
 
