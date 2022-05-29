@@ -1,6 +1,7 @@
 <main>
-    <%= if @current_user do %>
-      <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
-    <%= end %>
+  <%= if @current_user do %>
+    <%= render TaskrWeb.LayoutView, "_navbar.html", assigns %>
+  <%= end %>
+
   <%= @inner_content %>
 </main>

@@ -1,10 +1,16 @@
 <div class="container">
+    <div class="tasks-container">
+        <div class="header_container">
+            <h1 class="header">Tasks</h1>
+        </div>
 
-<h1>Tasks</h1>
+        <div class="subheader_container">
+            <h2 class="subheader">In Progress</h2>
+        </div>
+        <%= for task <- @tasks do %>
+            <%= link task.description, to: Routes.task_path(@conn, :show, task.id), class: "task-card" %>
+        <% end %>
 
-<%= for task <- @tasks do %>
-    <%= link task.description, to: Routes.task_path(@conn, :show, task.id), class: "task-card" %>
-<% end %>
-
-<%= link "Add Task", to: Routes.task_path(@conn, :new), class: "add-task-btn" %>
+        <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "add-task-btn" %>
+    </div>
 </div>

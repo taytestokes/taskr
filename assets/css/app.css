@@ -1,3 +1,5 @@
+@import "./reset.css";
+
 /* Variables */
 :root {
   --zinc-50: #fafafa;
@@ -11,10 +13,21 @@
   --zinc-800: #27272a;
   --zinc-900: #18181b;
 
+  --yellow-50: #fefce8;
+  --yellow-100: #fef9c3;
+  --yellow-200: #fef08a;
+  --yellow-300: #fde047;
+  --yellow-400: #facc15;
+  --yellow-500: #eab308;
+  --yellow-600: #ca8a04;
+
+  --green-100: #dcfce7;
+  --green-600: #16a34a;
+
   --box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-/* Custom */
+/* Default Overrides */
 *,
 *::before,
 *::after {
@@ -23,6 +36,7 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* Application */
 .container {
   margin: 0 auto;
   max-width: 380px;
@@ -31,13 +45,74 @@
   flex-direction: column;
 }
 
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.account {
+  border-radius: 4px;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  background-color: var(--zinc-800);
+  color: white;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 900;
+}
+
 /* Tasks */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.subheader {
+  margin-bottom: 24px;
+  padding: 12px 0;
+}
+
+.status {
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.completed {
+  background-color: var(--green-100);
+  color: var(--green-600);
+}
+
+.inprogress {
+  background-color: var(--yellow-100);
+  color: var(--yellow-600);
+}
+
 .add-task-btn {
   background-color: #4f46e5;
   border: #4f46e5 solid 1px;
   border-radius: 4px;
   color: white;
-  padding: 8px;
   width: 100%;
   text-decoration: none;
 }
@@ -56,6 +131,4 @@
 
 .task-card:hover {
   background-color: var(--zinc-50);
-  transform: scale(1.05);
-  transition: all 300ms;
 }

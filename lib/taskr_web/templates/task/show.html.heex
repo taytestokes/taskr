@@ -1,9 +1,18 @@
 <div class="container">
-<h1><%= @task.description %></h1>
+    <div class="tasks-container">
+        <div class="header_container">
+            <h1 class="header">Task Details</h1>
+            <div class={"status #{if @task.completed, do: "completed", else: "inprogress" }"}>
+                <span class={"status_text #{if @task.completed, do: "completed", else: "inprogress"}"}>Completed</span>
+            </div>
+        </div>
+    </div>
 
+<%# 
+<p><%= @task.inserted_at %>
 
-<p><%= @task.status %></p>
-<p><%= @task.inserted_at %></p>
+        <%# <%= @task.description %>
+
 
 
 <%= link "Delete", to: Routes.task_path(@conn, :delete, @task.id), method: :delete, data: [confirm: "Are you sure?"] %>
