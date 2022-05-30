@@ -5,21 +5,30 @@
             <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "btn_primary" %>
         </div>
 
-        <div class="subheader_container">
-            <div class="label">In Progress</div>
+        <div class="section_container">
+            <div class="status nuetral">In Progress</div>
         </div>
 
+        <div class="task_list">
+            <%= for task <- @inprogress_tasks do %>
+                <%= link to: Routes.task_path(@conn, :show, task.id), class: "task" do %>
 
-        <%= for task <- @tasks do %>
-            <%= link to: Routes.task_path(@conn, :show, task.id), class: "task-card" do %>
-                <%= task.description %>
+                    <%= task.description %>
+                <% end %>    
             <% end %>
-        <% end %>
+        </div>
 
-        <div class="subheader_container">
-            <div class="label">Completed</div>
+        <div class="section_container">
+            <div class="status nuetral">Completed</div>
+        </div>
+
+        <div class="task_list">
+            <%= for task <- @completed_tasks do %>
+                <%= link to: Routes.task_path(@conn, :show, task.id), class: "task" do %>
+                    
+                    <%= task.description %>
+                <% end %>    
+            <% end %>
         </div>
     </div>
-
-
 </div>

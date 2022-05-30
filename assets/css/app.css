@@ -25,6 +25,7 @@
   --green-600: #16a34a;
 
   --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
   --blue-600: #2563eb;
   --blue-700: #1d4ed8;
   --blue-800: #1e40af;
@@ -64,25 +65,31 @@ a {
 .btn_primary {
   border: none;
   border-radius: 4px;
-  box-shadow: var(--box-shadow-sm);
   padding: 8px 12px;
   cursor: pointer;
   background-color: var(--blue-600);
   color: white;
   font-size: 1rem;
-  transition: background-color 100ms ease-in;
+}
+
+.btn_secondary {
+  border: var(--zinc-200) 1px solid;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--zinc-600);
+  background-color: transparent;
+  font-size: 1rem;
 }
 
 .btn_danger {
   border: none;
   border-radius: 4px;
-  box-shadow: var(--box-shadow-sm);
   padding: 8px 12px;
   cursor: pointer;
-  background-color: var(--red-400);
+  background-color: var(--red-600);
   color: white;
   font-size: 1rem;
-  transition: background-color 100ms ease-in;
 }
 
 /* Icons */
@@ -121,14 +128,22 @@ form input {
   margin-bottom: 12px;
 }
 
-.add_task_action_container {
+.input {
+  border: var(--zinc-400) 1px solid;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.action_container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 24px;
+  width: 100%;
 }
 
-.add_task_action_container a {
+.action_container a {
   border: none;
   padding: 4px 8px;
   margin: 0;
@@ -219,34 +234,22 @@ form input {
   color: var(--yellow-600);
 }
 
-.input {
-  border: var(--zinc-400) 1px solid;
-  border-radius: 4px;
-  padding: 8px;
+.nuetral {
+  background-color: var(--zinc-200);
+  color: var(--zinc-600);
 }
 
-.action_container {
+.task_list {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
+  margin-bottom: 24px;
 }
 
-.btn {
-  padding: 8px;
+.task {
   border-radius: 4px;
-  background-color: var(--zinc-400);
-  color: white;
-  text-decoration: none;
-  margin-right: 4px;
-}
-
-.task-card {
-  border: var(--zinc-200) solid 1px;
-  border-radius: 4px;
-  box-shadow: var(--box-shadow-sm);
-  margin-bottom: 8px;
-  padding: 8px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -254,6 +257,6 @@ form input {
   width: 100%;
 }
 
-.task-card:hover {
+.task:hover {
   background-color: var(--zinc-50);
 }

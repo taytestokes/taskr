@@ -7,7 +7,10 @@ defmodule TaskrWeb.TaskController do
     def index(conn, _params) do
         user_id = conn.assigns.current_user.id
         tasks = Tasks.get_tasks_by_user_id(user_id)
-        render(conn, "index.html", tasks: tasks)
+        completed_tasks = Enum.filter(tasks, fn task -> task.completed end)
+        inprogress_tasks = Enum.filter(tasks, fn task -> !task.completed end)
+
+        render(conn, "index.html", completed_tasks: completed_tasks, inprogress_tasks: inprogress_tasks)
     end
 
     def show(conn, %{"id" => id}) do

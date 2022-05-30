@@ -8,7 +8,7 @@
             <%= label f, :description, class: "label" %>
             <%= text_input f, :description, class: "input"  %>
 
-            <div class="add_task_action_container">
+            <div class="action_container">
                 <%= link  "Cancel", to: Routes.task_path(@conn, :index) %>
                 <%= submit "Add Task", class: "btn_primary"%>
             </div>

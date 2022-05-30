@@ -13,7 +13,7 @@ defmodule Taskr.Tasks.Task do
 
     def changeset(task, attrs) do
         task
-        |> cast(attrs, [:description, :user_id])
-        |> validate_required([:description, :user_id])
+        |> cast(attrs, [:description, :completed, :user_id])
+        |> validate_required([:description, :completed, :user_id])
   end
 end

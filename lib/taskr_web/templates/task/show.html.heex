@@ -3,7 +3,7 @@
         <div class="header_container">
             <h1 class="header">Task Details</h1>
             <%= link to: Routes.task_path(@conn, :edit, @task.id) do %>
-                <%= FontAwesome.icon("gear", type: "solid", class: "icon-md") %>
+                <%= FontAwesome.icon("pen-to-square", type: "solid", class: "icon-md") %>
             <% end %>
         </div>
 
@@ -26,14 +26,10 @@
                 <span class="date"><%= format_date(@task.inserted_at) %></span>
             </div>
             <div class="section">
-                <div class="section_label">Last Updated</div>
+                <div class="section_label">Updated</div>
                 <span class="date"><%= format_date(@task.updated_at) %></span>
             </div>
-        </div>
-
-        <div class="action_container">
-            <%= link "Delete Task", to: Routes.task_path(@conn, :delete, @task.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn_danger"%>
-        </div>        
+        </div>  
     </div>
 </div>
 

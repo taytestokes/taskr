@@ -1,17 +1,22 @@
-<h1>Update Task</h1>
-
-<%= form_for @changeset, Routes.task_path(@conn, :update, @task.id), fn f -> %>
-    <%= if @changeset.action do %>
-        <div>
-            <p>Something went wrong!</p>
+<div class="container">
+    <div class="tasks-container">
+        <div class="header_container">
+            <h1 class="header">Update Task</h1>
+            <%= link "Delete", to: Routes.task_path(@conn, :delete, @task.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn_danger"  %>
         </div>
-    <% end %>
 
-    <%= label f, :description %>
-    <%= text_input f, :description %>
+        <%= form_for @changeset, Routes.task_path(@conn, :update, @task.id), fn f -> %>
+            <%= label f, :description, class: "section_label" %>
+            <%= text_input f, :description, class: "input" %>
 
-    <div>
-        <%= submit "Update Task"%>
-        <%= link  "Cancel", to: Routes.task_path(@conn, :index) %>
+            <%= label f, :completed, "Status", class: "section_label" %>
+            <%= select f, :completed, [{"Completed", true}, {"In Progress", false}], class: "input" %>
+
+            <div class="action_container">
+                <%= link  "Cancel", to: Routes.task_path(@conn, :show, @task.id), class: "btn_secondary" %>
+
+                <%= submit "Update Task", class: "btn_primary"%>
+            </div>
+        <% end %>
     </div>
-<% end %>
+</div>
