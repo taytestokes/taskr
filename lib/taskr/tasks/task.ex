@@ -3,6 +3,7 @@ defmodule Taskr.Tasks.Task do
     import Ecto.Changeset
 
     schema "tasks" do
+        field(:title, :string)
         field(:description, :string)
         field(:completed, :boolean, default: false)
 
@@ -13,7 +14,7 @@ defmodule Taskr.Tasks.Task do
 
     def changeset(task, attrs) do
         task
-        |> cast(attrs, [:description, :completed, :user_id])
-        |> validate_required([:description, :completed, :user_id])
+        |> cast(attrs, [:title, :description, :completed, :user_id])
+        |> validate_required([:title, :description, :completed, :user_id])
   end
 end

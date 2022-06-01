@@ -22,6 +22,7 @@
   --yellow-600: #ca8a04;
 
   --green-100: #dcfce7;
+  --green-400: #4ade80;
   --green-600: #16a34a;
 
   --blue-400: #60a5fa;
@@ -37,7 +38,7 @@
   --box-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-/* Overrides */
+/* Defaults */
 *,
 *::before,
 *::after {
@@ -46,7 +47,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-/* Links */
 a {
   text-decoration: none;
 }
@@ -58,59 +58,70 @@ a {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* Tasks */
+.task {
+  display: flex;
   align-items: flex-start;
+  width: 100%;
+  margin-bottom: 24px;
+  gap: 12px;
 }
 
-/* Buttons */
-.btn_primary {
-  border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
-  cursor: pointer;
-  background-color: var(--blue-600);
-  color: white;
-  font-size: 1rem;
+.task-list > a:last-child > .task {
+  margin-bottom: 0px;
 }
 
-.btn_secondary {
-  border: var(--zinc-200) 1px solid;
-  border-radius: 4px;
-  padding: 8px 12px;
-  cursor: pointer;
-  color: var(--zinc-600);
-  background-color: transparent;
-  font-size: 1rem;
+.task-details {
+  display: flex;
+  flex-direction: column;
 }
 
-.btn_danger {
-  border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
-  cursor: pointer;
-  background-color: var(--red-600);
-  color: white;
-  font-size: 1rem;
-}
-
-/* Icons */
-.icon-sm {
-  height: 0.75rem;
+.status {
+  display: flex;
+  background-color: var(--zinc-400);
+  border-radius: 50%;
   width: 0.75rem;
+  height: 0.75rem;
 }
 
-.icon-md {
-  height: 1rem;
-  width: 1rem;
+.completed {
+  background-color: var(--green-400);
+  color: var(--green-600);
 }
 
-.icon-lg {
-  height: 1.25rem;
-  width: 1.25rem;
+.inprogress {
+  background-color: var(--yellow-400);
+  color: var(--yellow-600);
 }
 
-.icon-xl {
-  height: 1.5rem;
-  width: 1.5rem;
+.title {
+  font-weight: bold;
+}
+
+.description {
+  color: var(--zinc-600);
+  margin-top: 8px;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--zinc-100);
+  color: var(--zinc-600);
+  padding: 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.delete {
+  color: var(--red-400);
 }
 
 /* Forms */
@@ -125,31 +136,26 @@ form label {
 }
 
 form input {
+  padding: 12px 0px;
+  border: none;
   margin-bottom: 12px;
+  outline: none;
+  font-size: 1rem;
+}
+
+form textarea {
+  border: none;
+  margin-bottom: 12px;
+  outline: none;
+  font-size: 1rem;
+  width: 100%;
+  resize: none;
 }
 
 .input {
-  border: var(--zinc-400) 1px solid;
+  border: none;
   border-radius: 4px;
   padding: 8px;
-}
-
-.action_container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 24px;
-  width: 100%;
-}
-
-.action_container a {
-  border: none;
-  padding: 4px 8px;
-  margin: 0;
-  cursor: pointer;
-  border-radius: 4px;
-  text-decoration: none;
 }
 
 /* Navbar */
@@ -176,40 +182,23 @@ form input {
   font-weight: 900;
 }
 
-/* Tasks */
-.tasks-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 24px 0;
-  width: 100%;
-}
-
-.header_container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  width: 100%;
-}
-
 .header {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
-.section_container {
-  margin-bottom: 24px;
-  width: 100%;
-}
-
 .section {
-  display: flex;
-  justify-content: space-between;
+  margin: 24px 0px;
   width: 100%;
 }
 
-.section_label {
+.section-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-label {
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -217,46 +206,4 @@ form input {
 .subheader {
   margin-bottom: 24px;
   padding: 12px 0;
-}
-
-.status {
-  padding: 8px 12px;
-  border-radius: 4px;
-}
-
-.completed {
-  background-color: var(--green-100);
-  color: var(--green-600);
-}
-
-.inprogress {
-  background-color: var(--yellow-100);
-  color: var(--yellow-600);
-}
-
-.nuetral {
-  background-color: var(--zinc-200);
-  color: var(--zinc-600);
-}
-
-.task_list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 24px;
-}
-
-.task {
-  border-radius: 4px;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-decoration: none;
-  width: 100%;
-}
-
-.task:hover {
-  background-color: var(--zinc-50);
 }

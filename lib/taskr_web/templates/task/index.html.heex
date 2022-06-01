@@ -1,34 +1,28 @@
 <div class="container">
-    <div class="tasks-container">
-        <div class="header_container">
-            <h1 class="header">Tasks</h1>
-            <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "btn_primary" %>
-        </div>
+    <div class="section">
+        <h1 class="header">Tasks</h1>
+    </div>
 
-        <div class="section_container">
-            <div class="status nuetral">In Progress</div>
-        </div>
-
-        <div class="task_list">
-            <%= for task <- @inprogress_tasks do %>
-                <%= link to: Routes.task_path(@conn, :show, task.id), class: "task" do %>
-
-                    <%= task.description %>
-                <% end %>    
+    <div class="section">
+        <ul class="task-list">
+            <%= for task <- @tasks do %>
+                <%= link to: Routes.task_path(@conn, :show, task.id) do %>
+                    <li class="task">
+                        <div>
+                            <div class={"status #{get_status_class(task)}"}/>
+                        </div>
+                        <div>
+                            <p class="title"><%= task.title %></p>
+                            <p class="description"><%= task.description %></p>
+                        </div>
+                    </li>
+                <% end %>
             <% end %>
-        </div>
+        </ul>
+    </div>
+    
 
-        <div class="section_container">
-            <div class="status nuetral">Completed</div>
-        </div>
-
-        <div class="task_list">
-            <%= for task <- @completed_tasks do %>
-                <%= link to: Routes.task_path(@conn, :show, task.id), class: "task" do %>
-                    
-                    <%= task.description %>
-                <% end %>    
-            <% end %>
-        </div>
+    <div class="section">
+        <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "add-btn" %>
     </div>
 </div>

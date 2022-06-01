@@ -13,6 +13,7 @@ defmodule Taskr.Tasks do
             t in Task,
             where: t.user_id == ^user_id
         )
+        |> order_by(asc: :id)
         |> Repo.all()
     end
 
