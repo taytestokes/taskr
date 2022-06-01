@@ -24,14 +24,8 @@ defmodule TaskrWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", TaskrWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   scope "/auth", TaskrWeb do
-    pipe_through :browser
+    pipe_through [:browser]
 
     get "/login", SessionController, :new
     post "/login", SessionController, :create
@@ -41,7 +35,7 @@ defmodule TaskrWeb.Router do
     post "/register", RegistrationController, :create
   end
 
-  scope "/tasks", TaskrWeb do
+  scope "/", TaskrWeb do
     # is_authenticated is a custom function from the auth plug
     pipe_through [:browser, :is_authenticated]
 

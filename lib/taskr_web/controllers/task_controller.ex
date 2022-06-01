@@ -7,8 +7,6 @@ defmodule TaskrWeb.TaskController do
     def index(conn, _params) do
         user_id = conn.assigns.current_user.id
         tasks = Tasks.get_tasks_by_user_id(user_id)
-
-        # add a changeset to be used to create a new task from the index page
         changeset = Tasks.create_changeset(%Task{})
 
         render(conn, "index.html", tasks: tasks, changeset: changeset)
@@ -71,20 +69,16 @@ defmodule TaskrWeb.TaskController do
         end
     end
 
+    def toggle(conn, %{"id" => id}) do
+        task = Tasks.get_task_by_id!(id)
+        Tasks.update_task(task, %{completed: toggle_completion(task)})
+        redirect(conn, to: Routes.task_path(conn, :index))
+    end
+
     def toggle_completion(task) do
         case task.completed do
             false -> true
             _ -> false
         end
-    end
-
-    def toggle(conn, %{"id" => id}) do
-        task = Tasks.get_task_by_id!(id)
-
-        # Update the task to be completed
-        Tasks.update_task(task, %{completed: toggle_completion(task)})
-
-        # Redirect to task index page
-        redirect(conn, to: Routes.task_path(conn, :index))
     end
 end
