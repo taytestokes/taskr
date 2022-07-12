@@ -20,7 +20,7 @@ defmodule TaskrWeb.SessionController do
     defp logout_user(conn) do
         conn
         |> configure_session(drop: true)
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.session_path(conn, :new))
     end
 
     defp login_user(conn, user) do
