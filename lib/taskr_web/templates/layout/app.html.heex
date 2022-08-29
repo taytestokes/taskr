@@ -1,3 +1,7 @@
 <main>
+  <%= if @current_user do %>
+    <%= render TaskrWeb.LayoutView, "_navbar.html", assigns %>
+  <%= end %>
+
   <%= @inner_content %>
 </main>
