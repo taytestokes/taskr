@@ -4,7 +4,7 @@ defmodule TaskrWeb.Router do
   # Makes the is_authenticated function  plug available for
   # use in the router that gets plugged into the pipeline used
   # the tasks endpoints
-  import TaskrWeb.Plugs.Auth, only: [is_authenticated: 2]
+  import TaskrWeb.Plugs.Authenticator, only: [is_authenticated: 2]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -17,7 +17,7 @@ defmodule TaskrWeb.Router do
     # based off of the user id stored in the session
     # and stores the user into the session as :current_user
     # or if the user id doesn't exist, :current_user will be nil
-    plug TaskrWeb.Plugs.Auth
+    plug TaskrWeb.Plugs.Authenticator
   end
 
   pipeline :api do
