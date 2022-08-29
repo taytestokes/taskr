@@ -1,4 +1,4 @@
-defmodule Taskr.Repo.Migrations.CreateUsers do
+defmodule Taskr.Repo.Migrations.AddUsersTable do
   use Ecto.Migration
 
   def change do

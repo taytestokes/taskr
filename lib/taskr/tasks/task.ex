@@ -4,7 +4,6 @@ defmodule Taskr.Tasks.Task do
 
   schema "tasks" do
     field(:title, :string)
-    field(:description, :string)
     field(:completed, :boolean, default: false)
 
     belongs_to(:user, Taskr.Users.User)

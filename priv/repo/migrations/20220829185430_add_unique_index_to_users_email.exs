@@ -1,4 +1,4 @@
-defmodule Taskr.Repo.Migrations.AddIndexToUsersEmail do
+defmodule Taskr.Repo.Migrations.AddUniqueIndexToUsersEmail do
   use Ecto.Migration
 
   def change do
