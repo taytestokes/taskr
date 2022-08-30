@@ -39,7 +39,7 @@ defmodule TaskrWeb.SessionController do
   defp handle_login_response({:ok, conn}) do
     conn
     |> put_flash(:info, "Welcome to Taskr!")
-    |> redirect(to: Routes.task_path(conn, :index))
+    |> redirect(to: Routes.dashboard_path(conn, :index))
   end
 
   defp handle_login_response({:error, :invalid_password, conn}) do

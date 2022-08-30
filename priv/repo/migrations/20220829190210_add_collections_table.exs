@@ -6,7 +6,7 @@ defmodule Taskr.Repo.Migrations.AddCollectionsTable do
       add(:title, :string)
 
       add(:user_id, references(:users, on_delete: :delete_all))
-      
+
       timestamps()
     end
   end

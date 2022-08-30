@@ -12,5 +12,5 @@ defmodule Taskr.Repo.Migrations.AddTasksTable do
 
       timestamps()
     end
-end
+  end
 end

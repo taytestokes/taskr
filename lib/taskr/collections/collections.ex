@@ -6,7 +6,7 @@ defmodule Taskr.Collections.Collection do
     field(:title, :string)
 
     belongs_to(:user, Taskr.Users.User)
-    
+
     timestamps()
   end
 

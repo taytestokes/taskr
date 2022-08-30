@@ -35,11 +35,15 @@ defmodule TaskrWeb.Router do
     post "/register", RegistrationController, :create
   end
 
-  scope "/", TaskrWeb do
-    # is_authenticated is a custom function from the auth plug
+  scope "/dashboard", TaskrWeb do
     pipe_through [:browser, :is_authenticated]
 
-    get "/", TaskController, :index
+    # Base Dashboard
+    get "/", DashboardController, :index
+
+    # Collections Dashboard Routes
+    get "/collections/new", CollectionsController, :new
+
     get "/new", TaskController, :new
     get "/:id", TaskController, :show
     get "/:id/edit", TaskController, :edit
@@ -49,6 +53,12 @@ defmodule TaskrWeb.Router do
     post "/", TaskController, :create
     put "/:id", TaskController, :update
     delete "/:id", TaskController, :delete
+  end
+
+  scope "/", TaskrWeb do
+    pipe_through [:browser]
+
+    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.

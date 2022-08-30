@@ -1,0 +1,19 @@
+<div class="w-72 bg-white border-r">
+    <div class="border-b p-4">
+        <span>Taskr</span>
+    </div>
+
+    <div class="flex flex-col p-4 border-b">
+        <div>Collections</div>
+
+        <%= link to: Routes.collections_path(@conn, :new), class: "bg-gray-100 border rounded-md py-1 text-gray-600" do %>
+            New Collection
+        <% end %>
+    </div>
+
+    <div class="flex flex-col p-4 border-b">
+        <%= link to: Routes.session_path(@conn, :delete), method: :delete, class: "p-2 bg-gray-100 border rounded-md" do %>
+            Sign Out
+        <% end %>
+    </div>
+</div>

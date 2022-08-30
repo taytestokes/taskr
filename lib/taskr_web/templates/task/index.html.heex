@@ -1,28 +1,24 @@
-<div class="container">
-    <div class="section">
-        <h1 class="text-3xl">Tasks</h1>
-    </div>
 
-    <div class="section">
-        <ul class="task-list">
-            <%= for task <- @tasks do %>
-                <%= link to: Routes.task_path(@conn, :show, task.id) do %>
-                    <li class="task">
-                        <div>
-                            <div class={"status #{get_status_class(task)}"}/>
-                        </div>
-                        <div>
-                            <p class="title"><%= task.title %></p>
-                            <p class="description"><%= task.description %></p>
-                        </div>
-                    </li>
-                <% end %>
+
+<div class="section">
+    <ul class="task-list">
+        <%= for task <- @tasks do %>
+            <%= link to: Routes.task_path(@conn, :show, task.id) do %>
+                <li class="task">
+                    <div>
+                        <div class={"status #{get_status_class(task)}"}/>
+                    </div>
+                    <div>
+                        <p class="title"><%= task.title %></p>
+                        <p class="description"><%= task.description %></p>
+                    </div>
+                </li>
             <% end %>
-        </ul>
-    </div>
-    
+        <% end %>
+    </ul>
+</div>
 
-    <div class="section">
-        <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "primary-btn" %>
-    </div>
+
+<div class="section">
+    <%= link "Add Task", to: Routes.task_path(@conn, :new), class: "primary-btn" %>
 </div>

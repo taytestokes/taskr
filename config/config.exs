@@ -50,15 +50,20 @@ config :phoenix, :json_library, Jason
 # Config font awesome icons
 config :ex_fontawesome, type: "regular"
 
+# Hero Icons
+config :ex_heroicons, type: "outline"
+
 # Tailwind CSS
-config :tailwind, version: "3.1.8", default: [
-  args: ~w(
+config :tailwind,
+  version: "3.1.8",
+  default: [
+    args: ~w(
     --config=tailwind.config.js
     --input=css/app.css
     --output=../priv/static/assets/app.css
   ),
-  cd: Path.expand("../assets", __DIR__)
-]
+    cd: Path.expand("../assets", __DIR__)
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
