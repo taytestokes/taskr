@@ -5,9 +5,11 @@ defmodule TaskrWeb.CollectionsController do
   alias Taskr.Collections.Collection
 
   def new(conn, _params) do
-    # Create a new changeset struct for the new collection - will be used in the form
+    user_id = conn.assigns.current_user.id
+    collections = Collections.get_collections_by_user_id(user_id)
     changeset = Collections.create_changeset(%Collection{})
-    render(conn, "new.html", changeset: changeset)
+
+    render(conn, "new.html", changeset: changeset, collections: collections)
   end
 
   def create(conn, %{"collection" => collection_params}) do
