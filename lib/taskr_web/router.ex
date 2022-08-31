@@ -43,6 +43,7 @@ defmodule TaskrWeb.Router do
 
     # Collections Dashboard Routes
     get "/collections/new", CollectionsController, :new
+    post "/collections", CollectionsController, :create
 
     get "/new", TaskController, :new
     get "/:id", TaskController, :show
