@@ -1,8 +1,19 @@
 defmodule TaskrWeb.CollectionsController do
   use TaskrWeb, :controller
 
+  alias Taskr.Tasks
+  alias Taskr.Tasks.Task
   alias Taskr.Collections
   alias Taskr.Collections.Collection
+
+  def show(conn, %{"id" => collection_id}) do
+    user_id = conn.assigns.current_user.id
+    collections = Collections.get_collections_by_user_id(user_id)
+    collection = Collections.get_collection_by_id(collection_id)
+    changeset = Tasks.create_changeset(%Task{})
+
+    render(conn, "show.html", collections: collections, collection: collection, changeset: changeset)
+  end
 
   def new(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -20,8 +31,7 @@ defmodule TaskrWeb.CollectionsController do
     case Collections.create_collection(collection_params) do
       {:ok, collection} ->
         conn
-        # Readjust once we have collection routes done
-        |> redirect(to: Routes.dashboard_path(conn, :index))
+        |> redirect(to: Routes.collections_path(conn, :show, collection.id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

@@ -1,0 +1,20 @@
+<div class="flex h-screen w-screen bg-gray-50">
+    <%# Side Navbar %>
+    <%= render TaskrWeb.LayoutView, "_sidebar.html", assigns %>
+
+    <%# Main Content %>
+    <div class="flex flex-auto">
+        <div class="w-full max-w-2xl mx-auto py-20">
+            <div class="text-3xl font-bold mb-8">
+                <%= @collection.title %>
+            </div>
+
+            <%= form_for @changeset, Routes.task_path(@conn, :create, @collection.id), [class: "relative"], fn f -> %>
+                <%= label f, :title, class: "sr-only" %>
+                <%= text_input f, :title, placeholder: "Add a new task", class: "w-full py-4 pr-32 text-sm border-gray-200 rounded-md" %>
+
+                <%= submit "Add", class: "absolute px-10 py-2 text-gray-600 border bg-gray-100 text-sm rounded-md top-2 right-2" %>
+            <% end %>
+        </div>
+    </div>
+</div>

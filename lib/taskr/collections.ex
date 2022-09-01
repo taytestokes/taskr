@@ -4,6 +4,10 @@ defmodule Taskr.Collections do
     alias Taskr.Repo
     alias Taskr.Collections.Collection
 
+    def get_collection_by_id(id) do
+        Repo.get!(Collection, id)
+    end
+
     def get_collections_by_user_id(user_id) do
         from(
             c in Collection,
