@@ -73,13 +73,16 @@ defmodule TaskrWeb.TaskController do
     end
   end
 
-  def toggle(conn, %{"id" => id}) do
-    task = Tasks.get_task_by_id!(id)
+  def toggle(conn, %{"collection_id" => collection_id, "task_id" => task_id}) do
+    # Get task from database
+    task = Tasks.get_task_by_id!(task_id)
+    # Update task toggling the completion status
     Tasks.update_task(task, %{completed: toggle_completion(task)})
-    redirect(conn, to: Routes.task_path(conn, :index))
+    # Redirect to collection page that task belongs to
+    redirect(conn, to: Routes.collections_path(conn, :show, collection_id))
   end
 
-  def toggle_completion(task) do
+  defp toggle_completion(task) do
     case task.completed do
       false -> true
       _ -> false

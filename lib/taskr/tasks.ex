@@ -8,6 +8,15 @@ defmodule Taskr.Tasks do
     Repo.get!(Task, id)
   end
 
+  def get_tasks_by_collection_id(collection_id) do
+    from(
+      t in Task,
+      where: t.collection_id == ^collection_id
+    )
+    |> order_by(asc: :id)
+    |> Repo.all()
+  end
+
   def get_tasks_by_user_id(user_id) do
     from(
       t in Task,

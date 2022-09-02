@@ -7,7 +7,7 @@ defmodule Taskr.Collections.Collection do
     field(:theme, :string)
 
     belongs_to(:user, Taskr.Users.User)
-
+    
     has_many(:tasks, Taskr.Tasks.Task)
 
     timestamps()

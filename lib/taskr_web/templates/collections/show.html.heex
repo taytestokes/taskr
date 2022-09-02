@@ -1,8 +1,6 @@
 <div class="flex h-screen w-screen bg-gray-50">
-    <%# Side Navbar %>
     <%= render TaskrWeb.LayoutView, "_sidebar.html", assigns %>
 
-    <%# Main Content %>
     <div class="flex flex-auto">
         <div class="w-full max-w-2xl mx-auto py-20">
             <div class="text-3xl font-bold mb-8">
@@ -15,6 +13,23 @@
 
                 <%= submit "Add", class: "absolute px-10 py-2 text-gray-600 border bg-gray-100 text-sm rounded-md top-2 right-2" %>
             <% end %>
+
+            <div class="mt-8">Tasks</div>
+
+            <ul class="flex flex-col mt-4 space-y-4">
+                <%= for task <- @tasks do %>
+                    <li class="flex items-center space-x-2 bg-white rounded-md p-4 border">
+                        <a href={Routes.task_path(@conn, :toggle, @collection.id, task.id)} class={get_task_toggle_button_styles(task)}>
+                            <%= if task.completed do Heroicons.icon("check", type: "outline", class: "h-4 w-4 text-green-600") end %>
+                        </a>
+                        <span class={get_task_text_styles(task)}>
+                            <%= task.title %>
+                        </span>
+                    </li>
+                <% end %>
+            </ul>
+
+            <div class="mt-8">Completed</div>
         </div>
     </div>
 </div>

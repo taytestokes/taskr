@@ -11,8 +11,9 @@ defmodule TaskrWeb.CollectionsController do
     collections = Collections.get_collections_by_user_id(user_id)
     collection = Collections.get_collection_by_id(collection_id)
     changeset = Tasks.create_changeset(%Task{})
-
-    render(conn, "show.html", collections: collections, collection: collection, changeset: changeset)
+    tasks = Tasks.get_tasks_by_collection_id(collection_id)
+    
+    render(conn, "show.html", collections: collections, collection: collection, changeset: changeset, tasks: tasks)
   end
 
   def new(conn, _params) do
