@@ -1,10 +1,9 @@
-<div class="flex h-screen w-screen bg-gray-50">
-    <%# Side Navbar %>
-    <%= render TaskrWeb.LayoutView, "_sidebar.html", assigns %>
-
-    <%# Content Container %>
+<div class="flex flex-col h-screen w-screen bg-gray-50">
+    <%= render TaskrWeb.LayoutView, "_topnav.html", assigns %>
     <div class="flex flex-auto">
-        <div class="w-full max-w-2xl mx-auto py-20">
+        <%= render TaskrWeb.LayoutView, "_sidebar.html", assigns %>
+        <div class="flex flex-auto">
+            <div class="w-full max-w-2xl mx-auto py-20">
             <div class="text-3xl font-bold mb-8">New Collection</div>
             
             <%= form_for @changeset, Routes.collections_path(@conn, :create), [class: "space-y-8"], fn f -> %>
@@ -43,5 +42,8 @@
                 <%= submit "Create", class: "w-full text-white rounded-md font-bold py-2  bg-gray-900" %>
             <% end %>
         </div>
-    </div>
+        </div>
+    </div> 
 </div>
+
+        

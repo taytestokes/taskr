@@ -1,13 +1,5 @@
 <div class="w-72 bg-white border-r">
-    <div class="border-b p-4">
-        <%= link "Taskr", to: Routes.dashboard_path(@conn, :index), class: "font-bold" %>
-    </div>
-
-    <div class="flex flex-col p-4 border-b">
-        <div class="flex items-center">
-            <span>Collections</span>
-        </div>
-        
+    <div class="flex flex-col p-4">
         <ul>
             <%= for collection <- @collections do %>
                 <%= link to: Routes.collections_path(@conn, :show, collection.id) do %>
@@ -22,12 +14,6 @@
         <%= link to: Routes.collections_path(@conn, :new), class: "flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100" do %>
             <%= Heroicons.icon("plus", type: "outline", class: "h-4 w-4") %>
             <span>New Collection</span> 
-        <% end %>
-    </div>
-
-    <div class="flex flex-col p-4 border-b">
-        <%= link to: Routes.session_path(@conn, :delete), method: :delete, class: "p-2 bg-gray-100 border rounded-md" do %>
-            Sign Out
         <% end %>
     </div>
 </div>
