@@ -49,6 +49,7 @@ defmodule TaskrWeb.Router do
     # Task Routes
     post "/collections/:id/tasks", TaskController, :create
     get "/collections/:collection_id/tasks/toggle/:task_id", TaskController, :toggle
+    delete "/collections/:collection_id/tasks/:task_id", TaskController, :delete
 
 
     get "/new", TaskController, :new
@@ -57,7 +58,6 @@ defmodule TaskrWeb.Router do
     get "/:id/edit", TaskController, :edit
 
     put "/:id", TaskController, :update
-    delete "/:id", TaskController, :delete
   end
 
   scope "/", TaskrWeb do

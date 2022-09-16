@@ -62,14 +62,14 @@ defmodule TaskrWeb.TaskController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    task = Tasks.get_task_by_id!(id)
+  def delete(conn, %{"collection_id" => collection_id, "task_id" => task_id}) do
+    task = Tasks.get_task_by_id!(task_id)
 
     case Tasks.delete_task(task) do
       {:ok, _task} ->
         conn
         |> put_flash(:info, "Task was successfully deleted!")
-        |> redirect(to: Routes.task_path(conn, :index))
+        |> redirect(to: Routes.collections_path(conn, :show, collection_id))
     end
   end
 
