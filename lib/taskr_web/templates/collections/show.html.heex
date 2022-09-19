@@ -2,33 +2,22 @@
     <%= render TaskrWeb.LayoutView, "_topnav.html", assigns %>
 
     <div class="flex flex-auto">
-        <%= render TaskrWeb.LayoutView, "_sidebar.html", assigns %>
-        
-        <div class="flex flex-auto">
-            <div class="w-full max-w-2xl mx-auto py-20">
-                <div class="flex items-center justify-between mb-8">
-                    <span class="text-3xl font-bold">
-                        <%= @collection.title %>
-                    </span>
-
-                    <%# <%= link to: "#", class: "bg-gray-200 hover:bg-white border rounded-md p-2" do %>
-                        <%# <%= Heroicons.icon("pencil", type: "outline", class: "h-4 w-4") %>
-                    <%# <% end %> 
+            <div class="w-full max-w-2xl mx-auto py-12 px-2">
+                <div class="flex items-center mb-8 text-3xl font-bold">
+                    <%= @collection.title %>
                 </div>
                 
-                <%= form_for @changeset, Routes.task_path(@conn, :create, @collection.id), [class: "bg-white rounded-md shadow"], fn f -> %>
-                    <div class="py-4 border-b">
+                <%= form_for @changeset, Routes.task_path(@conn, :create, @collection.id), [class: "bg-white rounded-md shadow flex items-center p-4"], fn f -> %>
                         <%= label f, :title, class: "sr-only" %>
-                        <%= text_input f, :title, placeholder: "What needs to be done?", class: "w-full focus:ring-0 border-none focus:border-none text-sm border-gray-200 rounded-md" %>
-                    </div>
-                    <div class="flex justify-end py-2 px-4">
-                        <%= submit "Create", class: "px-6 py-2 bg-black text-white rounded-md text-sm" %>
-                    </div>
+                        <%= text_input f, :title, placeholder: "What needs to be done?", class: "w-full focus:ring-0 border-none focus:border-none border-gray-200 rounded-md p-0" %>
+                        <%= submit class: "bg-black p-2 text-white rounded-md text text-sm" do %>
+                            <%= Heroicons.icon("plus", type: "outline", class: "h-4 w-4") %>
+                        <% end %>
                 <% end %>
 
                 <div class="mt-8 font-semibold">Tasks - <%= length(@tasks)%></div>
 
-                <ul class="flex flex-col mt-4 space-y-6">
+                <ul class="flex flex-col mt-4 space-y-4">
                     <%= for task <- @tasks do %>
                         <li class="flex items-center justify-between bg-white rounded-md shadow p-4">
                             <div class="flex items-center space-x-2">
@@ -41,7 +30,7 @@
                             </div>
                             
                             <div class="flex items-center space-x-2">
-                                <%= link to: Routes.task_path(@conn, :delete, @collection.id, task.id), method: :delete, data: [confirm: "Are you sure?"], class: "bg-red-500 text-white rounded-md p-2" do %>
+                                <%= link to: Routes.task_path(@conn, :delete, @collection.id, task.id), method: :delete, data: [confirm: "Are you sure?"], class: "bg-red-500 p-2 text-white rounded-md" do %>
                                     <%= Heroicons.icon("trash", type: "outline", class: "h-4 w-4") %>
                                 <% end %>
                             </div>
@@ -49,6 +38,5 @@
                     <% end %>
                 </ul>
             </div>
-        </div>
-    </div>    
+        </div> 
 </div>
