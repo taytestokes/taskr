@@ -1,12 +1,11 @@
 defmodule TaskrWeb.DashboardController do
   use TaskrWeb, :controller
 
-  alias Taskr.Collections
-
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
-    collections = Collections.get_collections_by_user_id(user_id)
+    # TODO: Move to a date based program rather than a collection based
+    # - Want tasks to be data based
     
-    render(conn, "index.html", collections: collections)
+    render(conn, "index.html")
   end
 end
