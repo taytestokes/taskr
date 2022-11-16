@@ -1,4 +1,3 @@
-<div class="flex items-center justify-between bg-white border-b p-4">
-    <%= link "Taskr", to: Routes.dashboard_path(@conn, :index), class: "font-bold" %>
+<div class="flex items-center justify-end bg-white border-b p-4">
     <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
 </div>

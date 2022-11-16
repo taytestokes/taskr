@@ -4,23 +4,21 @@ defmodule Taskr.Tasks do
   alias Taskr.Repo
   alias Taskr.Tasks.Task
 
-  def get_task_by_id!(id) do
-    Repo.get!(Task, id)
-  end
+  # Get all the tasks for the current date by the user id
+  def get_current_date_tasks_by_user_id(user_id) do
+    # Create a date struct for current date
+    # TODO: look into getting the date right - seems to generate a date 1 day ahead
+    # The logic below subtracts a date
+    current_date = Date.add(Date.utc_today(), -1)
+    # Get date struct for the first minute of the current date
+    begging_of_current_date = Timex.beginning_of_day(current_date)
+    # Get date struct for the very last minute in the current date
+    end_of_current_date = Timex.end_of_day(current_date)
 
-  def get_tasks_by_collection_id(collection_id) do
     from(
       t in Task,
-      where: t.collection_id == ^collection_id
-    )
-    |> order_by(asc: :id)
-    |> Repo.all()
-  end
-
-  def get_tasks_by_user_id(user_id) do
-    from(
-      t in Task,
-      where: t.user_id == ^user_id
+      where: t.user_id == ^user_id,
+      where: fragment("?::date BETWEEN ?::date AND ?::date", t.inserted_at, ^begging_of_current_date, ^end_of_current_date)
     )
     |> order_by(asc: :id)
     |> Repo.all()
