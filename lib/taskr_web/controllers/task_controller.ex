@@ -12,16 +12,6 @@ defmodule TaskrWeb.TaskController do
     render(conn, "index.html", tasks: tasks, changeset: changeset)
   end
 
-  def show(conn, %{"id" => id}) do
-    task = Tasks.get_task_by_id!(id)
-    render(conn, "show.html", task: task)
-  end
-
-  def new(conn, _params) do
-    changeset = Tasks.create_changeset(%Task{})
-    render(conn, "new.html", changeset: changeset)
-  end
-
   def create(conn, %{"task" => task_params}) do
     user_id = conn.assigns.current_user.id
     # Add user id to task params
@@ -38,6 +28,16 @@ defmodule TaskrWeb.TaskController do
     end
   end
 
+  def toggle(conn, %{"task_id" => task_id}) do
+    # Get task from database
+    task = Tasks.get_task_by_id!(task_id)
+    # Update task toggling the completion status
+    Tasks.update_task(task, %{completed: !task.completed})
+    # Redirect to collection page that task belongs to
+    redirect(conn, to: Routes.dashboard_path(conn, :index))
+  end
+
+  # MAYBE?
   def edit(conn, %{"id" => id}) do
     task = Tasks.get_task_by_id!(id)
     changeset = Tasks.create_changeset(task)
@@ -66,22 +66,6 @@ defmodule TaskrWeb.TaskController do
         conn
         |> put_flash(:info, "Task was successfully deleted!")
         |> redirect(to: Routes.collections_path(conn, :show, collection_id))
-    end
-  end
-
-  def toggle(conn, %{"collection_id" => collection_id, "task_id" => task_id}) do
-    # Get task from database
-    task = Tasks.get_task_by_id!(task_id)
-    # Update task toggling the completion status
-    Tasks.update_task(task, %{completed: toggle_completion(task)})
-    # Redirect to collection page that task belongs to
-    redirect(conn, to: Routes.collections_path(conn, :show, collection_id))
-  end
-
-  defp toggle_completion(task) do
-    case task.completed do
-      false -> true
-      _ -> false
     end
   end
 end

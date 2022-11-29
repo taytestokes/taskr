@@ -19,6 +19,10 @@ defmodule Taskr.Tasks do
     |> Repo.all()
   end
 
+  def get_task_by_id!(task_id) do
+    Repo.get!(Task, task_id)
+  end
+
   def create_task(attrs) do
     %Task{}
     |> Task.changeset(attrs)

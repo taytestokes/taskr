@@ -30,15 +30,15 @@ defmodule TaskrWeb.Router do
     get "/", DashboardController, :index
     # Task Routes
     post "/tasks", TaskController, :create
+    put "/tasks/:task_id/toggle", TaskController, :toggle
 
-    # Task Routes
     # get "/collections/:collection_id/tasks/toggle/:task_id", TaskController, :toggle
     # delete "/collections/:collection_id/tasks/:task_id", TaskController, :delete
 
-    get "/new", TaskController, :new
-    get "/:id", TaskController, :show
-    get "/:id/edit", TaskController, :edit
-    put "/:id", TaskController, :update
+    # get "/new", TaskController, :new
+    # get "/:id", TaskController, :show
+    # get "/:id/edit", TaskController, :edit
+    # put "/:id", TaskController, :update
   end
 
   scope "/", TaskrWeb do

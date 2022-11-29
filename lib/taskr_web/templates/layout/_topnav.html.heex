@@ -1,5 +1,8 @@
-<div class="flex items-center justify-end w-full bg-white dark:bg-zinc-800 border-b p-4 h-16 gap-2">
-  <button class="h-8 w-8 flex items-center justify-center rounded-md border" id="theme-toggle">
+<div class="flex items-center justify-end w-full border-b dark:border-zinc-700 p-4 h-16 gap-2">
+  <button
+    class="h-8 w-8 flex items-center justify-center rounded-md border dark:border-zinc-700"
+    id="theme-toggle"
+  >
     <%!-- Will only show when in light mode --%>
     <%= Heroicons.icon("moon",
       type: "outline",
@@ -17,7 +20,7 @@
   <%= button(
     to: Routes.session_path(@conn, :delete),
     method: :delete,
-    class: "h-8 w-8 flex items-center justify-center rounded-md border"
+    class: "h-8 w-8 flex items-center justify-center rounded-md border dark:border-zinc-700"
   ) do %>
     <%= Heroicons.icon("arrow-left-on-rectangle", type: "outline", class: "h-4 w-4") %>
   <% end %>
