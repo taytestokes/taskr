@@ -1,8 +1,28 @@
-<div class="flex flex-col h-screen w-screen bg-gray-100 dark:bg-zinc-900">
+<div class="flex flex-col items-center h-screen w-screen">
+  <%!-- Navbar --%>
   <%= render(TaskrWeb.LayoutView, "_topnav.html", assigns) %>
-  <div class="flex flex-auto">
+  <%!-- Content --%>
+  <div class="flex flex-auto flex-col w-full max-w-2xl p-4">
+    <h1 class="font-semibold">
+      Daily Tasks
+    </h1>
+
+    <%= form_for @changeset, Routes.task_path(@conn, :create), [class: "bg-gray-100 rounded-md flex items-center p-2"], fn f -> %>
+      <%= label(f, :title, class: "sr-only") %>
+      <%= text_input(f, :title,
+        placeholder: "What needs to be done?",
+        class:
+          "w-full focus:ring-0 border-none focus:border-none border-gray-200 bg-gray-100 rounded-md p-0"
+      ) %>
+      <%= submit class: "bg-black p-2 text-white rounded-md text text-sm" do %>
+        <%= Heroicons.icon("plus", type: "outline", class: "h-4 w-4") %>
+      <% end %>
+    <% end %>
+
     <%= for task <- @tasks do %>
-      <p><%= task.title %></p>
+      <div>
+        <p><%= task.title %></p>
+      </div>
     <% end %>
   </div>
 </div>

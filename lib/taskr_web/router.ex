@@ -26,11 +26,12 @@ defmodule TaskrWeb.Router do
 
   scope "/dashboard", TaskrWeb do
     pipe_through [:browser, :is_authenticated]
-
+    # Dashboard Home
     get "/", DashboardController, :index
+    # Task Routes
+    post "/tasks", TaskController, :create
 
     # Task Routes
-    # post "/collections/:id/tasks", TaskController, :create
     # get "/collections/:collection_id/tasks/toggle/:task_id", TaskController, :toggle
     # delete "/collections/:collection_id/tasks/:task_id", TaskController, :delete
 

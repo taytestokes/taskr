@@ -22,23 +22,19 @@ defmodule TaskrWeb.TaskController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"id" => collection_id, "task" => task_params}) do
+  def create(conn, %{"task" => task_params}) do
     user_id = conn.assigns.current_user.id
-    # Convert collection id from string to integer
-    collection_id = String.to_integer(collection_id)
     # Add user id to task params
     task_params = Map.put(task_params, "user_id", user_id)
-    # Add collection id to task params
-    task_params = Map.put(task_params, "collection_id", collection_id)
 
     case Tasks.create_task(task_params) do
       {:ok, _task} ->
         conn
         |> put_flash(:success, "Task created!")
-        |> redirect(to: Routes.collections_path(conn, :show, collection_id))
+        |> redirect(to: Routes.dashboard_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(TaskrWeb.CollectionsView, "show.html", changeset: changeset)
+        render(TaskrWeb.DashboardView, "index.html", changeset: changeset)
     end
   end
 
