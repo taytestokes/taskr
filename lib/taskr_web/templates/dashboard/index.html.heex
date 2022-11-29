@@ -1,9 +1,8 @@
 <div class="flex flex-col h-screen w-screen bg-gray-100">
-    <%= render TaskrWeb.LayoutView, "_topnav.html", assigns %>
-    <div class="flex flex-auto">
-        <%= for task <- @tasks do %>
-                            <p class="title"><%= task.title %></p>
-                
-            <% end %>
-    </div> 
+  <%= render(TaskrWeb.LayoutView, "_topnav.html", assigns) %>
+  <div class="flex flex-auto">
+    <%= for task <- @tasks do %>
+      <p class="title"><%= task.title %></p>
+    <% end %>
+  </div>
 </div>

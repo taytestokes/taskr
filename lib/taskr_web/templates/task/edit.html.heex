@@ -1,25 +1,25 @@
 <div class="container">
-    <div class="section">
-        <h1 class="header">Edit Task</h1>
+  <div class="section">
+    <h1 class="header">Edit Task</h1>
+  </div>
+
+  <%= form_for @changeset, Routes.task_path(@conn, :update, @task.id), fn f -> %>
+    <div class="section section-column">
+      <%= label(f, :title, class: "section-label") %>
+      <%= text_input(f, :title, autofocus: "") %>
     </div>
 
-    <%= form_for @changeset, Routes.task_path(@conn, :update, @task.id), fn f -> %>
-        <div class="section section-column">
-            <%= label f, :title, class: "section-label" %>
-            <%= text_input f, :title, autofocus: "" %>
-        </div>
+    <%= label(f, :description, class: "section-label") %>
+    <%= textarea(f, :description) %>
 
-        <%= label f, :description, class: "section-label" %>
-        <%= textarea f, :description %>
+    <div class="section section-column">
+      <%= label(f, :completed, "Status", class: "section-label") %>
+      <%= select(f, :completed, [{"Completed", true}, {"In Progress", false}], class: "input") %>
+    </div>
 
-        <div class="section section-column">
-            <%= label f, :completed, "Status", class: "section-label" %>
-            <%= select f, :completed, [{"Completed", true}, {"In Progress", false}], class: "input" %>
-        </div>
-
-        <div class="action-section">
-            <%= submit "Save", class: "primary-btn"%>
-            <%= link  "Cancel", to: Routes.task_path(@conn, :index), class: "edit-btn" %>
-        </div>
-    <% end %>
+    <div class="action-section">
+      <%= submit("Save", class: "primary-btn") %>
+      <%= link("Cancel", to: Routes.task_path(@conn, :index), class: "edit-btn") %>
+    </div>
+  <% end %>
 </div>

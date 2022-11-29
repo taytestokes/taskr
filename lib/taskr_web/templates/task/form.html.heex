@@ -1,7 +1,7 @@
 <%= form_for @changeset, Routes.task_path(@conn, :create), fn f -> %>
-        <%= text_input f, :description, class: "input"  %>
+  <%= text_input(f, :description, class: "input") %>
 
-        <div style="display: none;">
-            <%= submit "Save"%>
-        </div>
-    <% end %>
+  <div style="display: none;">
+    <%= submit("Save") %>
+  </div>
+<% end %>

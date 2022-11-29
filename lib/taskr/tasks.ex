@@ -18,7 +18,13 @@ defmodule Taskr.Tasks do
     from(
       t in Task,
       where: t.user_id == ^user_id,
-      where: fragment("?::date BETWEEN ?::date AND ?::date", t.inserted_at, ^begging_of_current_date, ^end_of_current_date)
+      where:
+        fragment(
+          "?::date BETWEEN ?::date AND ?::date",
+          t.inserted_at,
+          ^begging_of_current_date,
+          ^end_of_current_date
+        )
     )
     |> order_by(asc: :id)
     |> Repo.all()

@@ -1,23 +1,23 @@
 <div class="auth-container">
-    <div class="container">
-        <div class="auth-header">
-            <h1 class="header">Welcome Back</h1>
-            <p class="section-text">Sign back in and start managing your daily tasks</p>
-        </div>
-
-        <%= form_for @conn, Routes.session_path(@conn, :create), fn f -> %>
-            <div class="section section-column">
-                <%= label f, :email, class: "section-label" %>
-                <%= text_input f, :email, autofocus: "" %>
-            </div>
-
-            <%= label f, :password, class: "section-label" %>
-            <%= password_input f, :password %>
-
-            <div class="section action-section">
-                <%= submit "Login", class: "primary-btn"%>
-                <%= link  "Sign Up", to: Routes.registration_path(@conn, :new), class: "edit-btn" %>
-            </div>
-        <% end %>
+  <div class="container">
+    <div class="auth-header">
+      <h1 class="header">Welcome Back</h1>
+      <p class="section-text">Sign back in and start managing your daily tasks</p>
     </div>
+
+    <%= form_for @conn, Routes.session_path(@conn, :create), fn f -> %>
+      <div class="section section-column">
+        <%= label(f, :email, class: "section-label") %>
+        <%= text_input(f, :email, autofocus: "") %>
+      </div>
+
+      <%= label(f, :password, class: "section-label") %>
+      <%= password_input(f, :password) %>
+
+      <div class="section action-section">
+        <%= submit("Login", class: "primary-btn") %>
+        <%= link("Sign Up", to: Routes.registration_path(@conn, :new), class: "edit-btn") %>
+      </div>
+    <% end %>
+  </div>
 </div>

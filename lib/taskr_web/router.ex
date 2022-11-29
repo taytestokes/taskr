@@ -41,12 +41,10 @@ defmodule TaskrWeb.Router do
     # Base Dashboard
     get "/", DashboardController, :index
 
-
     # Task Routes
     # post "/collections/:id/tasks", TaskController, :create
     # get "/collections/:collection_id/tasks/toggle/:task_id", TaskController, :toggle
     # delete "/collections/:collection_id/tasks/:task_id", TaskController, :delete
-
 
     get "/new", TaskController, :new
 
