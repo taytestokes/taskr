@@ -9,10 +9,25 @@
     <link rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")} />
     <script defer type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}>
     </script>
+
+    <%!-- Tailwind Setup --%>
+    <script>
+      if (
+          localStorage.getItem('theme') === 'dark'
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+    </script>
   </head>
   <body>
     <main>
       <%= @inner_content %>
     </main>
+
+    <%!-- Tailwind Theme --%>
+    <script defer type="text/javascript" src={Routes.static_path(@conn, "/assets/theme.js")}>
+    </script>
   </body>
 </html>

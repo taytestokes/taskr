@@ -51,9 +51,8 @@ defmodule Taskr.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:argon2_elixir, "~> 3.0"},
       {:timex, "~> 3.7"},
-      {:ex_fontawesome, "~> 0.7.1"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:ex_heroicons, "~> 0.6.0"}
+      {:ex_heroicons, "~> 2.0.0"}
     ]
   end
 

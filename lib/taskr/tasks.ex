@@ -6,13 +6,8 @@ defmodule Taskr.Tasks do
 
   # Get all the tasks for the current date by the user id
   def get_current_date_tasks_by_user_id(user_id) do
-    # Create a date struct for current date
-    # TODO: look into getting the date right - seems to generate a date 1 day ahead
-    # The logic below subtracts a date
     current_date = NaiveDateTime.add(NaiveDateTime.utc_now(), -1)
-    # Get date struct for the first minute of the current date
     beginning_of_current_date = Timex.beginning_of_day(current_date)
-    # Get date struct for the very last minute in the current date
     end_of_current_date = Timex.end_of_day(current_date)
 
     from(

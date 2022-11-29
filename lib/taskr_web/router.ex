@@ -24,21 +24,9 @@ defmodule TaskrWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/auth", TaskrWeb do
-    pipe_through [:browser]
-
-    get "/login", SessionController, :new
-    post "/login", SessionController, :create
-    delete "/logout", SessionController, :delete
-
-    get "/register", RegistrationController, :new
-    post "/register", RegistrationController, :create
-  end
-
   scope "/dashboard", TaskrWeb do
     pipe_through [:browser, :is_authenticated]
 
-    # Base Dashboard
     get "/", DashboardController, :index
 
     # Task Routes
@@ -47,10 +35,8 @@ defmodule TaskrWeb.Router do
     # delete "/collections/:collection_id/tasks/:task_id", TaskController, :delete
 
     get "/new", TaskController, :new
-
     get "/:id", TaskController, :show
     get "/:id/edit", TaskController, :edit
-
     put "/:id", TaskController, :update
   end
 
@@ -58,6 +44,11 @@ defmodule TaskrWeb.Router do
     pipe_through [:browser]
 
     get "/", PageController, :index
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
   end
 
   # Other scopes may use custom stacks.
