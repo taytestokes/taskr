@@ -7,6 +7,8 @@ defmodule TaskrWeb.DashboardController do
     user_id = conn.assigns.current_user.id
     tasks = Tasks.get_current_date_tasks_by_user_id(user_id)
 
+    IO.inspect(tasks)
+
     render(conn, "index.html", tasks: tasks)
   end
 end

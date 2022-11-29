@@ -9,22 +9,16 @@ defmodule Taskr.Tasks do
     # Create a date struct for current date
     # TODO: look into getting the date right - seems to generate a date 1 day ahead
     # The logic below subtracts a date
-    current_date = Date.add(Date.utc_today(), -1)
+    current_date = NaiveDateTime.add(NaiveDateTime.utc_now(), -1)
     # Get date struct for the first minute of the current date
-    begging_of_current_date = Timex.beginning_of_day(current_date)
+    beginning_of_current_date = Timex.beginning_of_day(current_date)
     # Get date struct for the very last minute in the current date
     end_of_current_date = Timex.end_of_day(current_date)
 
     from(
       t in Task,
       where: t.user_id == ^user_id,
-      where:
-        fragment(
-          "?::date BETWEEN ?::date AND ?::date",
-          t.inserted_at,
-          ^begging_of_current_date,
-          ^end_of_current_date
-        )
+      where: t.inserted_at > ^beginning_of_current_date and t.inserted_at < ^end_of_current_date
     )
     |> order_by(asc: :id)
     |> Repo.all()
