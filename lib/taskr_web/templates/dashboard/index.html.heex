@@ -1,38 +1,40 @@
 <div class="flex flex-col items-center h-screen w-screen">
   <%= render(TaskrWeb.LayoutView, "_topnav.html", assigns) %>
-  <div class="flex flex-auto flex-col w-full max-w-lg p-4 gap-4">
+  <div class="flex flex-auto flex-col w-full max-w-lg px-4 py-8 gap-8">
     <h1 class="font-semibold text-2xl">
       Daily Tasks
     </h1>
 
-    <%= form_for @changeset, Routes.task_path(@conn, :create), [class: "bg-gray-100 dark:bg-zinc-800 rounded-md flex items-center p-2 border dark:border-zinc-700"], fn f -> %>
+    <%= form_for @changeset, Routes.task_path(@conn, :create), fn f -> %>
       <%= label(f, :title, class: "sr-only") %>
       <%= text_input(f, :title,
         placeholder: "What needs to be done?",
         class:
-          "w-full focus:ring-0 border-none focus:border-none bg-gray-100 dark:bg-zinc-800 rounded-md p-1"
+          "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-black rounded-md p-2"
       ) %>
     <% end %>
 
-    <%= for task <- @tasks do %>
-      <li class="flex items-center justify-between p-2">
-        <%= link(task.title,
-          to: Routes.task_path(@conn, :show, task.id),
-          class: "hover:underline #{if task.completed, do: "text-zinc-300 dark:text-zinc-600"}"
-        ) %>
+    <ul class="flex flex-col gap-4">
+      <%= for task <- @tasks do %>
+        <li class="flex items-center justify-between p-2">
+          <%= link(task.title,
+            to: Routes.task_path(@conn, :show, task.id),
+            class: "#{if task.completed, do: "text-zinc-400 dark:text-zinc-600"}"
+          ) %>
 
-        <%= link(
+          <%= link(
             to: Routes.task_path(@conn, :toggle, task.id),
             method: "put",
             class:
-              "border dark:border-zinc-700 flex items-center justify-center rounded-full h-6 w-6 #{if task.completed, do: "bg-green-500 border-green-500 dark:border-green-500"}"
+              "border border-gray-300 dark:border-zinc-700 flex items-center justify-center rounded-full h-6 w-6 #{if task.completed, do: "bg-green-500 border-green-500 dark:border-green-500"}"
           ) do %>
-          <%= Heroicons.icon("check",
-            type: "outline",
-            class: "h-4 w-4 text-white #{if !task.completed, do: "hidden"}"
-          ) %>
-        <% end %>
-      </li>
-    <% end %>
+            <%= Heroicons.icon("check",
+              type: "outline",
+              class: "h-4 w-4 text-white #{if !task.completed, do: "hidden"}"
+            ) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

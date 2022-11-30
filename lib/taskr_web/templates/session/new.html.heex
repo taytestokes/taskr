@@ -11,23 +11,25 @@
       <div>
         <%= label(f, :email) %>
         <%= text_input(f, :email,
+          placeholder: "Enter your email address",
           autofocus: "",
           class:
-            "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 rounded-md p-1 mt-1"
+            "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-black rounded-md p-2 mt-2"
         ) %>
       </div>
 
       <div>
         <%= label(f, :password) %>
         <%= password_input(f, :password,
+          placeholder: "Enter your password",
           class:
-            "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 rounded-md p-1 mt-1"
+            "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-black rounded-md p-2 mt-2"
         ) %>
       </div>
 
       <%= submit("Sign in",
         class:
-          "w-full bg-black text-zinc-300 p-2 rounded-xl text-sm font-semibold mt-2 border border-zinc-700"
+          "w-full bg-black text-zinc-300 p-2 rounded-xl font-semibold mt-2 border border-zinc-700"
       ) %>
     <% end %>
   </div>
