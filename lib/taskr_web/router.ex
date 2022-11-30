@@ -31,6 +31,7 @@ defmodule TaskrWeb.Router do
     # Task Routes
     post "/tasks", TaskController, :create
     put "/tasks/:task_id/toggle", TaskController, :toggle
+    get "/tasks/:task_id", TaskController, :show
 
     # get "/collections/:collection_id/tasks/toggle/:task_id", TaskController, :toggle
     # delete "/collections/:collection_id/tasks/:task_id", TaskController, :delete

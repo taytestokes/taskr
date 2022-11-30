@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center h-screen w-screen">
   <%= render(TaskrWeb.LayoutView, "_topnav.html", assigns) %>
   <div class="flex flex-auto flex-col w-full max-w-lg p-4 gap-4">
-    <h1 class="font-semibold text-xl">
+    <h1 class="font-semibold text-2xl">
       Daily Tasks
     </h1>
 
@@ -10,29 +10,29 @@
       <%= text_input(f, :title,
         placeholder: "What needs to be done?",
         class:
-          "w-full focus:ring-0 border-none focus:border-none bg-gray-100 dark:bg-zinc-800 rounded-md p-0"
+          "w-full focus:ring-0 border-none focus:border-none bg-gray-100 dark:bg-zinc-800 rounded-md p-1"
       ) %>
     <% end %>
 
-    <ul>
-      <%= for task <- @tasks do %>
-        <li class="flex items-center justify-between p-2">
-          <p class={"#{if task.completed, do: "text-zinc-300 dark:text-zinc-600"}"}>
-            <%= task.title %>
-          </p>
-          <%= link(
+    <%= for task <- @tasks do %>
+      <li class="flex items-center justify-between p-2">
+        <%= link(task.title,
+          to: Routes.task_path(@conn, :show, task.id),
+          class: "hover:underline #{if task.completed, do: "text-zinc-300 dark:text-zinc-600"}"
+        ) %>
+
+        <%= link(
             to: Routes.task_path(@conn, :toggle, task.id),
             method: "put",
             class:
               "border dark:border-zinc-700 flex items-center justify-center rounded-full h-6 w-6 #{if task.completed, do: "bg-green-500 border-green-500 dark:border-green-500"}"
           ) do %>
-            <%= Heroicons.icon("check",
-              type: "outline",
-              class: "h-4 w-4 text-white #{if !task.completed, do: "hidden"}"
-            ) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+          <%= Heroicons.icon("check",
+            type: "outline",
+            class: "h-4 w-4 text-white #{if !task.completed, do: "hidden"}"
+          ) %>
+        <% end %>
+      </li>
+    <% end %>
   </div>
 </div>

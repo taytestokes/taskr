@@ -1,3 +1,5 @@
+<%!-- TODO: Update task show page to allow editing and deleting and display info about task --%>
+
 <div class="container">
   <div class="section">
     <div class="section-row">
@@ -15,18 +17,8 @@
   </div>
 
   <div class="section">
-    <div class="section-label">
-      Description
-    </div>
-    <div class="section-text">
-      <%= @task.description %>
-    </div>
-  </div>
-
-  <div class="section">
     <div class="section-label row">
-      Status
-      <div class={"status #{get_status_class(@task)}"} />
+      Status <div class={"status #{get_status_class(@task)}"} />
     </div>
     <div class="section-text">
       <%= get_status(@task) %>
@@ -51,23 +43,5 @@
         <%= format_date(@task.updated_at) %>
       </div>
     </div>
-  </div>
-
-  <div class="section action-section">
-    <%= if !@task.completed do %>
-      <%= link("Mark Complete",
-        to: Routes.task_path(@conn, :toggle, @task.id),
-        class: "primary-btn"
-      ) %>
-    <% end %>
-
-    <%= link("Edit", to: Routes.task_path(@conn, :edit, @task.id), class: "edit-btn") %>
-
-    <%= link("Delete",
-      to: Routes.task_path(@conn, :delete, @task.id),
-      method: :delete,
-      data: [confirm: "Are you sure?"],
-      class: "delete-btn"
-    ) %>
   </div>
 </div>

@@ -1,23 +1,34 @@
-<div class="auth-container">
-  <div class="container">
-    <div class="auth-header">
-      <h1 class="header">Welcome to Taskr</h1>
-      <p class="section-text">Get started on managing your tasks by signing up for an account</p>
-    </div>
-
-    <%= form_for @conn, Routes.registration_path(@conn, :create), fn f -> %>
-      <div class="section section-column">
-        <%= label(f, :email, class: "section-label") %>
-        <%= text_input(f, :email, autofocus: "") %>
+<div class="flex flex-col items-center justify-center h-screen w-screen">
+  <div class="flex flex-col w-full max-w-lg p-4 gap-4">
+    <h1 class="font-semibold text-2xl">Sign Up</h1>
+    <p class="text-zinc-500 dark:text-zinc-400 text-sm">
+      Already have an account? <%= link("Sign in",
+        to: Routes.session_path(@conn, :new),
+        class: "dark:hover:text-white hover:text-black underline"
+      ) %>
+    </p>
+    <%= form_for @conn, Routes.registration_path(@conn, :create), [class: "flex flex-col w-full gap-4"], fn f -> %>
+      <div>
+        <%= label(f, :email) %>
+        <%= text_input(f, :email,
+          autofocus: "",
+          class:
+            "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 rounded-md p-1 mt-1"
+        ) %>
       </div>
 
-      <%= label(f, :password, class: "section-label") %>
-      <%= password_input(f, :password) %>
-
-      <div class="section action-section">
-        <%= submit("Sign Up", class: "primary-btn") %>
-        <%= link("Login", to: Routes.session_path(@conn, :new), class: "edit-btn") %>
+      <div>
+        <%= label(f, :password) %>
+        <%= password_input(f, :password,
+          class:
+            "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 rounded-md p-1 mt-1"
+        ) %>
       </div>
+
+      <%= submit("Sign up",
+        class:
+          "w-full bg-black text-zinc-300 p-2 rounded-xl text-sm font-semibold mt-2 border border-zinc-700"
+      ) %>
     <% end %>
   </div>
 </div>

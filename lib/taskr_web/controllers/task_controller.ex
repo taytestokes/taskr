@@ -12,6 +12,16 @@ defmodule TaskrWeb.TaskController do
     render(conn, "index.html", tasks: tasks, changeset: changeset)
   end
 
+  def show(conn, %{"task_id" => task_id}) do
+    task = Tasks.get_task_by_id!(task_id)
+    render(conn, "show.html", task: task)
+  end
+
+  def new(conn, _params) do
+    changeset = Tasks.create_changeset(%Task{})
+    render(conn, "new.html", changeset: changeset)
+  end
+
   def create(conn, %{"task" => task_params}) do
     user_id = conn.assigns.current_user.id
     # Add user id to task params
@@ -37,7 +47,6 @@ defmodule TaskrWeb.TaskController do
     redirect(conn, to: Routes.dashboard_path(conn, :index))
   end
 
-  # MAYBE?
   def edit(conn, %{"id" => id}) do
     task = Tasks.get_task_by_id!(id)
     changeset = Tasks.create_changeset(task)
