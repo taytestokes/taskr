@@ -1,32 +1,27 @@
-<section class="bg-gray-50">
-  <div class="max-w-screen-xl px-4 py-32 mx-auto h-screen items-center flex">
-    <div class="max-w-xl mx-auto text-center">
-      <h1 class="text-3xl font-extrabold sm:text-5xl">
-        Understand User Flow.
-        <strong class="font-extrabold text-purple-700 sm:block">
-          Increase Conversion.
-        </strong>
-      </h1>
+<div class="flex flex-col items-center h-screen w-screen">
+  <div class="flex flex-col h-full w-full max-w-6xl bg-white px-4">
+    <div class="h-24 w-full flex items-center justify-between">
+      <%= link("Taskr", to: Routes.page_path(@conn, :index), class: "text-2xl font-bold") %>
+      <%= link("Sign in",
+        to: Routes.session_path(@conn, :new),
+        class: "rounded-md border bg-gray-100 py-2 px-5 text-xs md:text-sm"
+      ) %>
+    </div>
 
-      <p class="mt-4 sm:leading-relaxed sm:text-xl">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus numquam ea!
-      </p>
-
-      <div class="flex flex-wrap justify-center gap-4 mt-8">
-        <a
-          class="block w-full px-12 py-3 text-sm font-medium text-white bg-purple-600 rounded shadow sm:w-auto active:bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring"
-          href="/get-started"
-        >
-          Sign In
-        </a>
-
-        <a
-          class="block w-full px-12 py-3 text-sm font-medium text-purple-600 rounded shadow sm:w-auto hover:text-purple-700 active:text-purple-500 focus:outline-none focus:ring"
-          href="/about"
-        >
-          Learn More
-        </a>
+    <div class="flex flex-col items-center px-4 py-32 text-center">
+      <div class="flex flex-col items-center gap-8 mx-auto max-w-xl">
+        <h1 class="text-5xl font-extrabold">
+          Manage Daily Tasks <strong>Increase Productivity</strong>
+        </h1>
+        <p class="sm:text-xl text-gray-600">
+          Taskr is a simple daily task management application that allows you to easily manage what needs to be done
+        </p>
+        <%= link("Get Started",
+          to: Routes.registration_path(@conn, :new),
+          class:
+            "rounded bg-black px-12 py-3 text-sm font-medium text-white focus:outline-none focus:ring sm:w-auto"
+        ) %>
       </div>
     </div>
   </div>
-</section>
+</div>
