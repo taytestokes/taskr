@@ -1,47 +1,8 @@
-<%!-- TODO: Update task show page to allow editing and deleting and display info about task --%>
-
-<div class="container">
-  <div class="section">
-    <div class="section-row">
-      <h1 class="header">Task Details</h1>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">
-      Title
-    </div>
-    <div class="section-text">
+<div class="flex flex-col items-center h-screen w-screen">
+  <%= render(TaskrWeb.LayoutView, "_topnav.html", assigns) %>
+  <div class="flex flex-auto flex-col w-full max-w-lg px-4 py-8 gap-8">
+    <h1 class="font-semibold text-2xl">
       <%= @task.title %>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label row">
-      Status <div class={"status #{get_status_class(@task)}"} />
-    </div>
-    <div class="section-text">
-      <%= get_status(@task) %>
-    </div>
-  </div>
-
-  <div class="section-row">
-    <div class="section">
-      <div class="section-label">
-        Created
-      </div>
-      <div class="section-text">
-        <%= format_date(@task.inserted_at) %>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-label">
-        Updated
-      </div>
-      <div class="section-text">
-        <%= format_date(@task.updated_at) %>
-      </div>
-    </div>
+    </h1>
   </div>
 </div>

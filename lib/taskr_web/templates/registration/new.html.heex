@@ -4,14 +4,13 @@
     <p class="text-zinc-500 dark:text-zinc-400 text-sm">
       Already have an account? <%= link("Sign in",
         to: Routes.session_path(@conn, :new),
-        class: "dark:hover:text-white hover:text-black underline"
+        class: "dark:hover:text-white hover:text-black hover:underline"
       ) %>
     </p>
     <%= form_for @conn, Routes.registration_path(@conn, :create), [class: "flex flex-col w-full gap-4"], fn f -> %>
       <div>
         <%= label(f, :email) %>
         <%= text_input(f, :email,
-          placeholder: "Enter your email address",
           autofocus: "",
           class:
             "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-black rounded-md p-2 mt-2"
@@ -21,7 +20,6 @@
       <div>
         <%= label(f, :password) %>
         <%= password_input(f, :password,
-          placeholder: "Enter your password",
           class:
             "w-full focus:ring-0 focus:border-gray-300 border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-black rounded-md p-2 mt-2"
         ) %>
